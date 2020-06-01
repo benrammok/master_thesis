@@ -15,13 +15,12 @@ with open(sys.argv[1], mode='r') as f:
 extracted_data = []
 print(timing_lines[0])
 print(f"Number of lines extracted {len(timing_lines)}")
-print(timing_lines[0].split(' '))
 for lines in timing_lines:
     found_sentence = re.findall(r'\s+\d+.\d+', lines)
     if len(found_sentence) == 1:
        extracted_data.append(float(found_sentence[0])) 
-
-print(f"Average Inference Time {sum(extracted_data) /  len(extracted_data)}")
+average_inf = sum(extracted_data) /  len(extracted_data)
+print(f"Average Inference Time {average_inf} and Average FPS {1 / (average_inf / 1000)}")
 #with open(sys.argv[1].split('.')[0] + 'csv', mode='w') as f:
 #    f.write('itteration, total_loss, average_loss\n')
 #    for data in extracted_data:

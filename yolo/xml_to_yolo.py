@@ -130,7 +130,6 @@ def main():
     parser = argparse.ArgumentParser('XML to CSV Formatter', 'A Python Program for converting a set of XML files in VOC format to CSV format')
     parser.add_argument('-i', '--input', type=str, default='', help='Input path to folders containing VOC XML files (Folders must have the names of \'train_labels\' and \'test_labels\')')
     parser.add_argument('-o', '--output', type=str, default='', help='Output path to image folder storing the formatted output (Defaults to image folder in current working directory)')
-    #parser.add_argument('--images', type=str, default='', help='Input path to folder containing all images (defaults to Images)')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Displays more information during the conversion process')
     args = parser.parse_args()
 
@@ -142,7 +141,7 @@ def main():
         image_dir_path = os.path.join(args.output)
 
     
-    # We need to find the path of each folder containing the train and test labels and we need to generate a pbtext file
+    # We need to find the path of each folder containing the train and test labels and we need to generate a .names file
     # Combine any classes found in the train and test labels.
     # If by any chance that there exist a class in the train set which is not in the test set,
     # or wise versa this ensures that every class is accounted for
@@ -170,11 +169,9 @@ def main():
 
        
                
-    print(combined_class_labels)
     # Remove double entries
     combined_class_labels = _remove_double_entry(combined_class_labels)
     combined_class_labels.sort()
-    print(combined_class_labels)
     # Create Path for train and test txt files
     if args.output == "":
         output_path = os.getcwd()
@@ -193,7 +190,8 @@ def main():
         with open(os.path.join(output_path, label_set[0] + ".txt"), 'w') as f:
             f.write(images_in_set)
         print(f"[INFO] Finished writing {label_set[0]}.txt to {output_path}\n")
-    
+        
+    # Generate classes.names file which contains each of the classes the model is to be trained on.
     with open(os.path.join(output_path, "classes.names"), "w") as f:
         print(combined_class_labels)
         for labels in combined_class_labels:
