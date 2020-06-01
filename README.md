@@ -6,5 +6,5 @@ This has since been evaluated by using Desktop GPU and CPU, in addition the netw
 
 Currently only Quantized Tensorflow Models can run on the Google Corals Edge TPU. So for the other implementations they were tested using the Dev Boards CPU.
 
-# To Be Added
-Going to add the code used on the Google Coral Dev Board and utility code used to test networks.
+# Google Coral
+To run the code on Google Coral, one need to install the tflite_runtime, the version for your operating system can be found at: https://www.tensorflow.org/lite/guide/python
