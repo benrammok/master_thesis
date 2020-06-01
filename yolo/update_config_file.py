@@ -37,8 +37,8 @@ def main():
            filter_lines.append(index - 1)
         if "classes" in line:
            classes_lines.append(index)
-    
-    for index in filter_lines:
+    # Change Only the three last filters
+    for index in filter_lines[-3:]:
         lines[index] = f"filters={num_filters}\n"
 
     for index in classes_lines:

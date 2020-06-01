@@ -198,5 +198,16 @@ def main():
             f.write(labels + '\n')
     print(f"[INFO] Finished writing classes.names to {output_path}\n")
 
+    # Create a .data file which is needed for training YOLOv3
+    with open(os.path.join(output_path, "config.data"), "w") as f:
+            config_text = ""
+            config_text += f"classes={len(combined_class_labels)}\n"  
+            config_text += f"train = {os.path.join(output_path, 'train_labels.txt')}\n"
+            config_text += f"valid = {os.path.join(output_path, 'test_labels.txt')}\n"
+            config_text += f"names = {os.path.join(output_path, 'classes.names')}\n"
+            config_text += f"backup = backup/\n"      
+            f.write(config_text)
+    print(f"[INFO] Finished writing config.data to {output_path}\n")
+
 if __name__ == "__main__":
     main()
