@@ -6,3 +6,6 @@ This folder contains utility python programs for extracting information from log
   
 - convert_training_log_to_csv Extracts information from a log file containing the output of Darknet when training YOLOv3.
   This includes itteration, average and total loss. This is written to a CSV file for further analysis. 
+
+- test_frozen_graph, takes three inputs; -i (IMAGE), -m (MODEL) and -l (LABEL). Uses tensorflow, CV2 and the Tensorflow Object Detection API to test a frozen pb graph.
+  Follow the instructions on https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md to get the Object Detection API up and running.
