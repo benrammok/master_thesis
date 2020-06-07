@@ -1,4 +1,8 @@
-# Inspired and modified from: https://towardsdatascience.com/detailed-tutorial-build-your-custom-real-time-object-detector-5ade1017fd2d
+# Code is written from the ground up with help and inspiration from:
+# https://towardsdatascience.com/detailed-tutorial-build-your-custom-real-time-object-detector-5ade1017fd2d
+# which takes original inspiration from https://github.com/datitran/raccoon_dataset
+# Added multiclass support using the Object Detection API's dataset_util.
+# Created custom main to handle generation of TFRecord
 import tensorflow as tf
 from object_detection.utils import dataset_util
 import pandas as pd

@@ -1,3 +1,7 @@
+# Code is written from the ground up with help and inspiration from:
+# from: https://towardsdatascience.com/detailed-tutorial-build-your-custom-real-time-object-detector-5ade1017fd2d
+# Added support for multiclass and reworked xml_to_csv function
+# Added custom handling for argparser.
 import pandas as pd
 import xml.etree.ElementTree as ElementTree
 import glob
