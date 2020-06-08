@@ -3,6 +3,7 @@ This folder contains utility python programs for extracting information from log
 
 - convert_test_results_to_average_inference.py Takes in a "result" log generated when running inference using ./darknet detector test with output to a log file.
   The file searches the log and extracts the resulting prediction time per image instance and reports back the average inference/prediction time.
+  It does not yet distinguish milliseconds from seconds, in case of reported seconds, take 1/inference time to get FPS, this will be changed later
   
 - convert_training_log_to_csv Extracts information from a log file containing the output of Darknet when training YOLOv3.
   This includes itteration, average and total loss. This is written to a CSV file for further analysis. 
