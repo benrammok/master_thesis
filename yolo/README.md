@@ -24,3 +24,23 @@ The program takes a config file and classes.names file as input and modifes the 
 To train a YOLO detector one can use the Darknet API.
 Training is initiated using ./darknet detector train <path_to_data_file> <path_to_yolo_config_file> <path_to_yolo_weights_file>. If you are using pretrained weights as a starting point, one need to add -clear 0 to allow training to start,
 if training is initiated from the pretrained weights it tend to stop after a single iteration.
+
+# Evalutating the YOLO models using COCO
+To evaluate the trained YOLOv3 detectors, one can apply the program developed by ydixion: https://github.com/ydixon/mAP_eval
+The program uses the filepath of each test sample to create id for each detection, this is done by using regular expression to fetch the number in the filename.
+In custom datasets the filename might not be with numbers which can be used as ID.
+
+This can be fixed by changing two lines under the get_image_id_from_path function.
+To fix this replace:
+m = re.search(r'\d+$', image_path)
+return int(m.group())
+with:
+m = re.search(r'\w+$', image_path)
+return m.group() 
+This uses the entire filename as an identifier and allows for custom datasets.
+This must be changed in both pred_yolo2json.py and gt_yolo2json.py.
+The final change must be done to gt_yolo2json.py where the line under create_annotations_dict must be changed from:
+label_path_list = [img_path.replace('jpg', 'txt').replace('images', 'labels') for img_path in img_path_list]
+to:
+label_path_list = [img_path.replace('jpg', 'txt').replace('images', 'images') for img_path in img_path_list]
+to search for labels in the image directory.
